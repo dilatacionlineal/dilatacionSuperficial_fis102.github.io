@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DILATACION SUPERFICIAL</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family:Comic Sans MS;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin: 20px 0;
+        }
+
+        p {
+            width: 80%;
+            max-width: 800px;
+            text-align: justify;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-container {
+            margin: 15px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .image-container img {
+            width: 400px;
+            height: auto;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .calculator {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+    }
+
+    .calculator input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .calculator button {
+        background-color: #2c3e50;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .calculator button:hover {
+        background-color: #34495e;
+    }
+
+    .calculator button:last-child {
+        margin-bottom: 15px; /* Espacio extra para el último botón */
+    }
+
+    .result {
+        margin-top: 20px;
+        font-weight: bold;
+        color: #2c3e50;
+    }
+    </style>
+</head>
+<body>
+    <h1>DILATACION SUPERFICIAL</h1>
+    <p>
+        La <strong>dilatación superficial</strong> es un concepto fundamental en física que describe el fenómeno por el cual una superficie de un líquido experimenta una "tensión" que tiende a minimizar o aumentar su área. Este comportamiento es resultado de las fuerzas intermoleculares que actúan en la interfaz entre el líquido y el aire o entre dos líquidos no miscibles.
+    </p>
+    <p>
+        Cuando las moléculas en la superficie de un líquido están en contacto con el aire, experimentan una atracción hacia las moléculas del líquido que las rodean, pero no tienen moléculas en la parte superior que las atraigan de la misma manera, lo que genera una especie de "tensión" que reduce la superficie expuesta. Este fenómeno es responsable de varias propiedades y comportamientos en los líquidos, como la formación de gotas esféricas, la ascensión capilar y la estabilidad de ciertos sistemas líquidos.
+    </p>
+    <p>
+        La <strong>dilatación superficial</strong> puede entenderse mejor al estudiar el concepto de <strong>tensión superficial</strong>, que es la medida de esta fuerza por unidad de longitud en la superficie del líquido. En este contexto, la dilatación superficial implica cómo varía la energía interna del sistema al modificar el área superficial, una propiedad esencial en fenómenos como la formación de burbujas, la adhesión de líquidos a superficies sólidas y la interacción entre líquidos y sólidos en una amplia variedad de procesos naturales y tecnológicos.
+    </p>
+  
+
+    <img src="Diferencia de area.webp" alt="Imagen 1 sobre dilatación superficial">
+
+    <div class="calculator">
+        <h2>Calculadora de Dilatación Superficial</h2>
+        <form id="dilatacionForm">
+            <label for="areaInicial">Área inicial (A₀) en \(cm^2\):</label>
+            <input type="number" id="areaInicial" placeholder="Ejemplo: 2500" step="0.01">
+    
+            <label for="coeficiente">Coeficiente de dilatación lineal (α):</label>
+            <input type="number" id="coeficiente" placeholder="Ejemplo: 0.000012" step="0.000001">
+    
+            <label for="deltaTemp">Cambio de temperatura (ΔT) en °C:</label>
+            <input type="number" id="deltaTemp" placeholder="Ejemplo: 50" step="0.1">
+    
+            <label for="deltaArea">Cambio de área (ΔA) en \(cm^2\):</label>
+            <input type="number" id="deltaArea" placeholder="Ejemplo: 5" step="0.01">
+    
+            <button type="button" onclick="calcular('area')">Calcular ΔA</button>
+            <button type="button" onclick="calcular('coeficiente')">Calcular α</button>
+            <button type="button" onclick="calcular('temperatura')">Calcular ΔT</button>
+            <button type="button" onclick="calcular('areaFinal')">Calcular A<sub>f</sub></button>
+        </form>
+        <div class="result" id="resultado"></div>
+    </div>
+    
+<script>
+   function calcular(tipo) {
+    // Obtener los valores de los inputs
+    const A0 = parseFloat(document.getElementById('areaInicial').value);
+    const alpha = parseFloat(document.getElementById('coeficiente').value);
+    const deltaT = parseFloat(document.getElementById('deltaTemp').value);
+    const deltaA = parseFloat(document.getElementById('deltaArea').value);
+
+    // Validar entradas
+    if (tipo === 'area' && (isNaN(A0) || isNaN(alpha) || isNaN(deltaT))) {
+        mostrarResultado("Por favor, ingresa A₀, α y ΔT para calcular ΔA.");
+        return;
+    }
+    if (tipo === 'coeficiente' && (isNaN(A0) || isNaN(deltaA) || isNaN(deltaT))) {
+        mostrarResultado("Por favor, ingresa A₀, ΔA y ΔT para calcular α.");
+        return;
+    }
+    if (tipo === 'temperatura' && (isNaN(A0) || isNaN(deltaA) || isNaN(alpha))) {
+        mostrarResultado("Por favor, ingresa A₀, ΔA y α para calcular ΔT.");
+        return;
+    }
+    if (tipo === 'areaFinal' && (isNaN(A0) || isNaN(deltaA))) {
+        mostrarResultado("Por favor, ingresa A₀ y ΔA para calcular A<sub>f</sub>.");
+        return;
+    }
+
+    // Calcular según el tipo seleccionado
+    let resultado;
+    if (tipo === 'area') {
+        resultado = 2 * alpha * A0 * deltaT;
+        mostrarResultado(`El cambio en el área (ΔA) es: ${resultado.toFixed(4)} cm²`);
+    } else if (tipo === 'coeficiente') {
+        resultado = deltaA / (2 * A0 * deltaT);
+        mostrarResultado(`El coeficiente de dilatación lineal (α) es: ${resultado.toFixed(6)}`);
+    } else if (tipo === 'temperatura') {
+        resultado = deltaA / (2 * alpha * A0);
+        mostrarResultado(`El cambio de temperatura (ΔT) es: ${resultado.toFixed(2)} °C`);
+    } else if (tipo === 'areaFinal') {
+        resultado = A0 + deltaA;
+        mostrarResultado(`El área final (A<sub>f</sub>) es: ${resultado.toFixed(4)} cm²`);
+    }
+}
+
+function mostrarResultado(mensaje) {
+    document.getElementById('resultado').innerHTML = mensaje;
+}
+</script>
+</body>
+    <!-- Contenedor de imágenes -->
+    <div class="image-container">
+        <img src="dilatacion1.png" alt="Imagen 1 sobre dilatación superficial">
+        <img src="COEFICIENTES DE DILATACION LINEAL.png" alt="Imagen 2 sobre dilatación superficial">
+        <img src="dilatacion3.png" alt="Imagen 3 sobre dilatación superficial">
+    </div>
+
+<h2>Tipos de dilatacion termica</h2>
+
+    <div class="video-container">
+        <video width="320" height="240" controls>
+            <source src="dilatacion de un metal.mp4" type="video/mp4"> 
+        </video>
+    </div>
+
+    <div class="video-container">
+        <video width="320" height="240" controls>
+            <source src="dilatacion de papel aluminio.mp4" type="video/mp4"> 
+        </video>
+    </div>
+
+
+    <h2>Estudiantes:</h2>
+    <ul>
+        <li>Mel Giorgia Ballesteros Delfin</li>
+        <li>George Neilss Fernández Jiménez  </li>
+        <li>Jorge Andre Ulloa Avila</li>
+        <li>Limberg Franz Mendez Saldaña</li>
+        <li>Pedro Matías Romero Villarroel </li>
+        <li>Willan David Arteaga Mallea</li>
+    </ul>
+
+</body>
+    
+
+
+
+</body>
+</html>
